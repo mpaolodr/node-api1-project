@@ -9,8 +9,6 @@ const Header = () => {
       </div>
       <nav>
         <NavLink to="/add">Add</NavLink>
-        <NavLink to="/edit">Edit</NavLink>
-        <NavLink to="/delete">Delete</NavLink>
       </nav>
     </header>
   );
