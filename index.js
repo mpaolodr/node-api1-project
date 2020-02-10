@@ -44,6 +44,28 @@ server.get("/api/users/:id", (req, res) => {
     });
 });
 
+// create user
+server.post("/api/users", (req, res) => {
+  const userData = req.body;
+
+  if (userData.bio && userData.name) {
+    Users.insert(userData)
+      .then(user => {
+        res.status(201).json(user);
+      })
+      .catch(err => {
+        res.status(500).json({
+          errorMessage:
+            "There was an error while saving the user to the database"
+        });
+      });
+  } else {
+    return res
+      .status(400)
+      .json({ errorMessage: "Please provide name and bio for the user." });
+  }
+});
+
 // port
 const port = 8000;
 server.listen(port, () => {
