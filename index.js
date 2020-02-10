@@ -9,6 +9,7 @@ const server = express();
 
 // middleware
 server.use(express.json());
+server.use(cors()); //cors
 
 // view all users
 server.get("/api/users", (req, res) => {
