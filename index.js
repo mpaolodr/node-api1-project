@@ -10,6 +10,17 @@ const server = express();
 // middleware
 server.use(express.json());
 
+// view all users
+server.get("/api/users", (req, res) => {
+  Users.find()
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(err => {
+      res.status(404).json({ message: "No users found" });
+    });
+});
+
 // port
 const port = 8000;
 server.listen(port, () => {
