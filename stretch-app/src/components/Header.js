@@ -8,7 +8,7 @@ const Header = () => {
         <h2>Full-Stack</h2>
       </div>
       <nav>
-        <NavLink to="/add">Add</NavLink>
+        <NavLink to="/addform">Add</NavLink>
       </nav>
     </header>
   );

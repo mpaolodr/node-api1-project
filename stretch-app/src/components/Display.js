@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 // actions
-import { fetchData } from "../actions";
+import { fetchData, deleteUser } from "../actions";
 
 const Display = props => {
-  const { fetchData, data } = props;
+  const { fetchData, data, deleteUser } = props;
 
   useEffect(() => {
     fetchData();
@@ -16,13 +16,13 @@ const Display = props => {
       {data.length !== 0 ? (
         data.map(user => {
           return (
-            <div className="user-card">
+            <div className="user-card" key={user.id}>
               <h3>{user.name}</h3>
               <h3>{user.bio}</h3>
 
               <div className="btn-container">
                 <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => deleteUser(user.id)}>Delete</button>
               </div>
             </div>
           );
@@ -40,4 +40,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchData })(Display);
+export default connect(mapStateToProps, { fetchData, deleteUser })(Display);
