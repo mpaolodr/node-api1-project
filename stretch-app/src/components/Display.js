@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { fetchData, deleteUser } from "../actions";
 
 const Display = props => {
-  const { fetchData, data, deleteUser } = props;
+  const { fetchData, data, deleteUser, toEdit } = props;
 
   useEffect(() => {
     fetchData();
@@ -21,7 +21,14 @@ const Display = props => {
               <h3>{user.bio}</h3>
 
               <div className="btn-container">
-                <button>Edit</button>
+                <button
+                  onClick={() => {
+                    toEdit(user);
+                    props.history.push("/editform");
+                  }}
+                >
+                  Edit
+                </button>
                 <button onClick={() => deleteUser(user.id)}>Delete</button>
               </div>
             </div>

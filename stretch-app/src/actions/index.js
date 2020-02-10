@@ -5,6 +5,7 @@ export const FETCH_DATA = "FETCH_DATA";
 export const FETCHING = "FETCHING";
 export const ADD_USER = "ADD_USER";
 export const DEL_USER = "DEL_USER";
+export const EDIT_USER = "EDIT_USER";
 
 // action creator
 export const fetchData = () => dispatch => {
@@ -47,4 +48,13 @@ export const deleteUser = id => dispatch => {
         .catch(err => console.log(err));
     })
     .catch();
+};
+
+// EDIT USER
+export const editUser = userObj => dispatch => {
+  dispatch({ type: FETCHING });
+  axios
+    .put(`http://localhost:8000/api/users/${userObj.id}`, userObj)
+    .then(res => dispatch({ type: EDIT_USER, payload: res.data }))
+    .catch(err => console.log(err));
 };

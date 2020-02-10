@@ -1,4 +1,10 @@
-import { FETCHING, FETCH_DATA, ADD_USER, DEL_USER } from "../actions";
+import {
+  FETCHING,
+  FETCH_DATA,
+  ADD_USER,
+  DEL_USER,
+  EDIT_USER
+} from "../actions";
 
 const initialState = {
   isFetching: false,
@@ -28,6 +34,13 @@ export const userReducer = (state = initialState, action) => {
       };
 
     case DEL_USER:
+      return {
+        ...state,
+        data: action.payload,
+        isFetching: false
+      };
+
+    case EDIT_USER:
       return {
         ...state,
         data: action.payload,
